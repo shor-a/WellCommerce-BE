@@ -14,7 +14,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next()
 })
 
-let port = 7770
+let port = 3001
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
 })
