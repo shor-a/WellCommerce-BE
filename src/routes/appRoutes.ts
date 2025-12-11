@@ -1,13 +1,32 @@
 import { Router } from "express"
-import { addNote, deleteNote, getAllNotes, getNote, updateNote } from "../controllers/mainController.ts"
-import { validateIdParam, validateNoteBody, validateNoteTitle } from "../utils/validatorFunctions.ts"
+import {
+  addCart,
+  deleteCart,
+  getAllCarts,
+  getCart,
+  updateCart,
+  addProduct,
+  deleteProduct,
+  getAllProducts,
+  getProduct,
+  updateProduct,
+} from "../controllers/mainController.ts"
+import { validateIdParam, validateCartBody, validateProductBody } from "../utils/validatorFunctions.ts"
 
 const router = Router()
 
-router.get("/get-note/:id", validateIdParam(), getNote)
-router.get("/get-all-notes", getAllNotes)
-router.post("/add-note", validateNoteBody(), validateNoteTitle(), addNote)
-router.put("/update-note/:id", validateIdParam(), validateNoteBody(), validateNoteTitle(), updateNote)
-router.delete("/delete-note/:id", validateIdParam(), deleteNote)
+// Cart routes
+router.get("/get-cart/:id", validateIdParam(), getCart)
+router.get("/get-all-carts", getAllCarts)
+router.post("/add-cart", validateCartBody(), addCart)
+router.put("/update-cart/:id", validateIdParam(), validateCartBody(), updateCart)
+router.delete("/delete-cart/:id", validateIdParam(), deleteCart)
+
+// Products routes
+router.get("/get-product/:id", validateIdParam(), getProduct)
+router.get("/get-all-products", getAllProducts)
+router.post("/add-product", validateProductBody(), addProduct)
+router.put("/update-product/:id", validateIdParam(), validateProductBody(), updateProduct)
+router.delete("/delete-product/:id", validateIdParam(), deleteProduct)
 
 export default router

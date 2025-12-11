@@ -8,7 +8,7 @@ export const wellcommerce = pgSchema("wellcommerce")
 export const cartInWellcommerce = wellcommerce.table(
   "cart",
   {
-    id: serial().notNull(),
+    cartId: serial().notNull(),
     customerName: varchar("customer_name", { length: 50 }).notNull(),
     customerPhone: varchar("customer_phone", { length: 16 }).notNull(),
     customerAddress: varchar("customer_address", { length: 256 }).notNull(),
@@ -24,7 +24,7 @@ export const cartInWellcommerce = wellcommerce.table(
 export const productsInWellcommerce = wellcommerce.table(
   "products",
   {
-    id: serial().notNull(),
+    pId: serial().notNull(),
     image: text().notNull(),
     name: varchar({ length: 150 }).notNull(),
     category: varchar({ length: 80 }).notNull(),

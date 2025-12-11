@@ -2,82 +2,159 @@ export function getOpenApiSpec(baseUrl = "http://localhost:3000") {
   return {
     openapi: "3.0.1",
     info: {
-      title: "ExpressOne API",
+      title: "WellCommerce API",
       version: "1.0.0",
-      description: "Minimal API with notes endpoints",
+      description: "E-commerce API with notes, cart, and products endpoints",
     },
     servers: [{ url: baseUrl }],
     paths: {
-      "/api/get-all-notes": {
+      "/api/get-all-carts": {
         get: {
-          summary: "Get all notes",
+          summary: "Get all carts",
           responses: {
             "200": {
-              description: "A list of notes",
+              description: "A list of carts",
               content: {
                 "application/json": {
-                  schema: { type: "object", properties: { notes: { type: "array", items: { $ref: "#/components/schemas/Note" } } } },
+                  schema: { type: "object", properties: { carts: { type: "array", items: { $ref: "#/components/schemas/Cart" } } } },
                 },
               },
             },
           },
         },
       },
-      "/api/get-note/{id}": {
+      "/api/get-cart/{id}": {
         get: {
-          summary: "Get a note by id",
+          summary: "Get a cart by id",
           parameters: [{ name: "id", in: "path", required: true, schema: { type: "integer" } }],
           responses: {
             "200": {
-              description: "A note",
+              description: "A cart",
               content: {
-                "application/json": { schema: { type: "object", properties: { note: { $ref: "#/components/schemas/Note" } } } },
+                "application/json": { schema: { type: "object", properties: { cart: { $ref: "#/components/schemas/Cart" } } } },
               },
             },
             "400": { description: "Validation error" },
           },
         },
       },
-      "/api/add-note": {
+      "/api/add-cart": {
         post: {
-          summary: "Create a new note",
+          summary: "Create a new cart",
           requestBody: {
             required: true,
-            content: { "application/json": { schema: { $ref: "#/components/schemas/NewNote" } } },
+            content: { "application/json": { schema: { $ref: "#/components/schemas/NewCart" } } },
           },
           responses: {
             "201": {
               description: "Created",
               content: {
-                "application/json": { schema: { type: "object", properties: { note: { $ref: "#/components/schemas/Note" } } } },
+                "application/json": { schema: { type: "object", properties: { cart: { $ref: "#/components/schemas/Cart" } } } },
               },
             },
           },
         },
       },
-      "/api/update-note/{id}": {
+      "/api/update-cart/{id}": {
         put: {
-          summary: "Update a note",
+          summary: "Update a cart",
           parameters: [{ name: "id", in: "path", required: true, schema: { type: "integer" } }],
-          requestBody: { required: true, content: { "application/json": { schema: { $ref: "#/components/schemas/NewNote" } } } },
+          requestBody: { required: true, content: { "application/json": { schema: { $ref: "#/components/schemas/NewCart" } } } },
           responses: {
             "201": {
               description: "Updated",
               content: {
-                "application/json": { schema: { type: "object", properties: { note: { $ref: "#/components/schemas/Note" } } } },
+                "application/json": { schema: { type: "object", properties: { cart: { $ref: "#/components/schemas/Cart" } } } },
               },
             },
           },
         },
       },
-      "/api/delete-note/{id}": {
+      "/api/delete-cart/{id}": {
         delete: {
-          summary: "Delete a note",
+          summary: "Delete a cart",
           parameters: [{ name: "id", in: "path", required: true, schema: { type: "integer" } }],
           responses: {
             "200": {
               description: "Deleted",
-              content: { "application/json": { schema: { type: "object", properties: { note: { type: "object" } } } } },
+              content: { "application/json": { schema: { type: "object", properties: { cart: { type: "object" } } } } },
+            },
+          },
+        },
+      },
+      "/api/get-all-products": {
+        get: {
+          summary: "Get all products",
+          responses: {
+            "200": {
+              description: "A list of products",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: { products: { type: "array", items: { $ref: "#/components/schemas/Product" } } },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      "/api/get-product/{id}": {
+        get: {
+          summary: "Get a product by id",
+          parameters: [{ name: "id", in: "path", required: true, schema: { type: "integer" } }],
+          responses: {
+            "200": {
+              description: "A product",
+              content: {
+                "application/json": { schema: { type: "object", properties: { product: { $ref: "#/components/schemas/Product" } } } },
+              },
+            },
+            "400": { description: "Validation error" },
+          },
+        },
+      },
+      "/api/add-product": {
+        post: {
+          summary: "Create a new product",
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/NewProduct" } } },
+          },
+          responses: {
+            "201": {
+              description: "Created",
+              content: {
+                "application/json": { schema: { type: "object", properties: { product: { $ref: "#/components/schemas/Product" } } } },
+              },
+            },
+          },
+        },
+      },
+      "/api/update-product/{id}": {
+        put: {
+          summary: "Update a product",
+          parameters: [{ name: "id", in: "path", required: true, schema: { type: "integer" } }],
+          requestBody: { required: true, content: { "application/json": { schema: { $ref: "#/components/schemas/NewProduct" } } } },
+          responses: {
+            "201": {
+              description: "Updated",
+              content: {
+                "application/json": { schema: { type: "object", properties: { product: { $ref: "#/components/schemas/Product" } } } },
+              },
+            },
+          },
+        },
+      },
+      "/api/delete-product/{id}": {
+        delete: {
+          summary: "Delete a product",
+          parameters: [{ name: "id", in: "path", required: true, schema: { type: "integer" } }],
+          responses: {
+            "200": {
+              description: "Deleted",
+              content: { "application/json": { schema: { type: "object", properties: { product: { type: "object" } } } } },
             },
           },
         },
@@ -85,20 +162,67 @@ export function getOpenApiSpec(baseUrl = "http://localhost:3000") {
     },
     components: {
       schemas: {
-        Note: {
+        Cart: {
           type: "object",
           properties: {
             id: { type: "integer" },
-            title: { type: "string" },
-            body: { type: "string" },
-            created_at: { type: "string", format: "date-time" },
+            customerName: { type: "string", maxLength: 50 },
+            customerPhone: { type: "string", maxLength: 16 },
+            customerAddress: { type: "string", maxLength: 256 },
+            totalPrice: { type: "number" },
+            variantDetails: { type: "array" },
+            orderComplete: { type: "string", enum: ["Y", "N"] },
+            createdAt: { type: "string", format: "date-time" },
+            updatedAt: { type: "string", format: "date-time" },
           },
-          required: ["title", "body"],
+          required: ["customerName", "customerPhone", "customerAddress", "totalPrice"],
         },
-        NewNote: {
+        NewCart: {
           type: "object",
-          properties: { title: { type: "string" }, body: { type: "string" } },
-          required: ["title", "body"],
+          properties: {
+            customerName: { type: "string", maxLength: 50 },
+            customerPhone: { type: "string", maxLength: 16 },
+            customerAddress: { type: "string", maxLength: 256 },
+            totalPrice: { type: "number" },
+            variantDetails: { type: "array" },
+            orderComplete: { type: "string", enum: ["Y", "N"] },
+          },
+          required: ["customerName", "customerPhone", "customerAddress", "totalPrice"],
+        },
+        Product: {
+          type: "object",
+          properties: {
+            id: { type: "integer" },
+            image: { type: "string" },
+            name: { type: "string", maxLength: 150 },
+            category: { type: "string", maxLength: 80 },
+            dressStyle: { type: "string", maxLength: 80 },
+            rating: { type: "number", minimum: 0, maximum: 5 },
+            ratingCount: { type: "integer", minimum: 0 },
+            price: { type: "number" },
+            description: { type: "string" },
+            originalPrice: { type: "number" },
+            discount: { type: "number" },
+            createdAt: { type: "string", format: "date-time" },
+            updatedAt: { type: "string", format: "date-time" },
+          },
+          required: ["image", "name", "category", "dressStyle", "rating", "price", "description"],
+        },
+        NewProduct: {
+          type: "object",
+          properties: {
+            image: { type: "string" },
+            name: { type: "string", maxLength: 150 },
+            category: { type: "string", maxLength: 80 },
+            dressStyle: { type: "string", maxLength: 80 },
+            rating: { type: "number", minimum: 0, maximum: 5 },
+            ratingCount: { type: "integer", minimum: 0 },
+            price: { type: "number" },
+            description: { type: "string" },
+            originalPrice: { type: "number" },
+            discount: { type: "number" },
+          },
+          required: ["image", "name", "category", "dressStyle", "rating", "price", "description"],
         },
       },
     },
