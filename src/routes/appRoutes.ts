@@ -10,8 +10,8 @@ import {
   getAllProducts,
   getProduct,
   updateProduct,
-} from "../controllers/mainController.ts"
-import { validateIdParam, validateCartBody, validateProductBody } from "../utils/validatorFunctions.ts"
+} from "../controllers/mainController.js"
+import { validateIdParam, validateCartBody, validateProductBody } from "../utils/validatorFunctions.js"
 
 const router = Router()
 

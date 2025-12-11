@@ -1,9 +1,9 @@
 import type { Request, Response, NextFunction } from "express"
 import express from "express"
-import router from "./routes/appRoutes.ts"
-import docsRouter from "./routes/openapiRoutes.ts"
-import { error } from "./exceptions/error.ts"
-import { notFound } from "./middlewares/notFound.ts"
+import router from "./routes/appRoutes.js"
+import docsRouter from "./routes/openapiRoutes.js"
+import { error } from "./exceptions/error.js"
+import { notFound } from "./middlewares/notFound.js"
 import cors from "cors"
 import "dotenv/config"
 

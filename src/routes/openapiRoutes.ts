@@ -1,5 +1,5 @@
 import { Router } from "express"
-import getOpenApiSpec from "../config/openapi/openapi.ts"
+import getOpenApiSpec from "../config/openapi/openapi.js"
 
 const router = Router()
 

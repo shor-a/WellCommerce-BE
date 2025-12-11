@@ -1,8 +1,8 @@
 import { eq } from "drizzle-orm"
-import { db } from "../config/db/db.ts"
-import { cartInWellcommerce, productsInWellcommerce } from "../config/db/schema.ts"
+import { db } from "../config/db/db.js"
+import { cartInWellcommerce, productsInWellcommerce } from "../config/db/schema.js"
 import type { Response, Request, NextFunction } from "express"
-import { CustomError } from "../exceptions/customError.ts"
+import { CustomError } from "../exceptions/customError.js"
 import { validationResult } from "express-validator"
 
 // Cart Controllers
