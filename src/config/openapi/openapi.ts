@@ -165,12 +165,15 @@ export function getOpenApiSpec(baseUrl = "http://localhost:3000") {
         Cart: {
           type: "object",
           properties: {
-            id: { type: "integer" },
+            cartId: { type: "integer" },
             customerName: { type: "string", maxLength: 50 },
             customerPhone: { type: "string", maxLength: 16 },
             customerAddress: { type: "string", maxLength: 256 },
             totalPrice: { type: "number" },
-            variantDetails: { type: "array" },
+            variantDetails: {
+              type: "array",
+              items: { type: "object" },
+            },
             orderComplete: { type: "string", enum: ["Y", "N"] },
             createdAt: { type: "string", format: "date-time" },
             updatedAt: { type: "string", format: "date-time" },
@@ -184,7 +187,10 @@ export function getOpenApiSpec(baseUrl = "http://localhost:3000") {
             customerPhone: { type: "string", maxLength: 16 },
             customerAddress: { type: "string", maxLength: 256 },
             totalPrice: { type: "number" },
-            variantDetails: { type: "array" },
+            variantDetails: {
+              type: "array",
+              items: { type: "object" },
+            },
             orderComplete: { type: "string", enum: ["Y", "N"] },
           },
           required: ["customerName", "customerPhone", "customerAddress", "totalPrice"],
@@ -192,7 +198,7 @@ export function getOpenApiSpec(baseUrl = "http://localhost:3000") {
         Product: {
           type: "object",
           properties: {
-            id: { type: "integer" },
+            pId: { type: "integer" },
             image: { type: "string" },
             name: { type: "string", maxLength: 150 },
             category: { type: "string", maxLength: 80 },
